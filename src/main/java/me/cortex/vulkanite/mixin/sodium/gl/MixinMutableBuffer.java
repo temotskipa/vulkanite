@@ -2,8 +2,8 @@ package me.cortex.vulkanite.mixin.sodium.gl;
 
 import me.cortex.vulkanite.compat.IVGBuffer;
 import me.cortex.vulkanite.lib.memory.VGBuffer;
-import me.jellysquid.mods.sodium.client.gl.buffer.GlBuffer;
-import me.jellysquid.mods.sodium.client.gl.buffer.GlMutableBuffer;
+import net.caffeinemc.mods.sodium.client.gl.buffer.GlBuffer;
+import net.caffeinemc.mods.sodium.client.gl.buffer.GlMutableBuffer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
