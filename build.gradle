@@ -2,6 +2,7 @@ plugins {
     id 'fabric-loom' version '1.7.3'
     id 'maven-publish'
     id 'checkstyle'
+    id 'com.github.spotbugs' version '6.0.9'
 }
 
 version = project.mod_version
@@ -46,10 +47,6 @@ dependencies {
     modRuntimeOnly 'io.github.douira:glsl-transformer:2.0.0-pre13'
 
     modRuntimeOnly 'net.java.dev.jna:jna:5.9.0'
-    
-    // JUnit for testing
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.2'
 }
 
 processResources {
@@ -112,13 +109,33 @@ checkstyle {
     toolVersion = '10.12.5'
     configFile = file("${rootDir}/config/checkstyle/checkstyle.xml")
     maxWarnings = 0
-    ignoreFailures = true
 }
 
-test {
-    useJUnitPlatform()
-    testLogging {
-        events "passed", "skipped", "failed"
+spotbugs {
+    toolVersion = '4.8.3'
+    ignoreFailures = true
+    showProgress = true
+    effort = 'max'
+    reportLevel = 'medium'
+}
+
+spotbugsMain {
+    reports {
+        html {
+            required = true
+            outputLocation = file("$buildDir/reports/spotbugs/main/spotbugs.html")
+            stylesheet = 'fancy-hist.xsl'
+        }
+    }
+}
+
+spotbugsTest {
+    reports {
+        html {
+            required = true
+            outputLocation = file("$buildDir/reports/spotbugs/test/spotbugs.html")
+            stylesheet = 'fancy-hist.xsl'
+        }
     }
 }
 
