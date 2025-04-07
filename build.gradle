@@ -46,6 +46,10 @@ dependencies {
     modRuntimeOnly 'io.github.douira:glsl-transformer:2.0.0-pre13'
 
     modRuntimeOnly 'net.java.dev.jna:jna:5.9.0'
+    
+    // JUnit for testing
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.2'
 }
 
 processResources {
@@ -109,6 +113,13 @@ checkstyle {
     configFile = file("${rootDir}/config/checkstyle/checkstyle.xml")
     maxWarnings = 0
     ignoreFailures = true
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
 
 
