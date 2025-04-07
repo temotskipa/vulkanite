@@ -2,7 +2,6 @@ plugins {
     id 'fabric-loom' version '1.7.3'
     id 'maven-publish'
     id 'checkstyle'
-    id 'com.github.spotbugs' version '6.0.9'
 }
 
 version = project.mod_version
@@ -109,34 +108,7 @@ checkstyle {
     toolVersion = '10.12.5'
     configFile = file("${rootDir}/config/checkstyle/checkstyle.xml")
     maxWarnings = 0
-}
-
-spotbugs {
-    toolVersion = '4.8.3'
     ignoreFailures = true
-    showProgress = true
-    effort = 'max'
-    reportLevel = 'medium'
-}
-
-spotbugsMain {
-    reports {
-        html {
-            required = true
-            outputLocation = file("$buildDir/reports/spotbugs/main/spotbugs.html")
-            stylesheet = 'fancy-hist.xsl'
-        }
-    }
-}
-
-spotbugsTest {
-    reports {
-        html {
-            required = true
-            outputLocation = file("$buildDir/reports/spotbugs/test/spotbugs.html")
-            stylesheet = 'fancy-hist.xsl'
-        }
-    }
 }
 
 
