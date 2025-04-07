@@ -1,0 +1,32 @@
+version: 2
+updates:
+  # Maintain dependencies for Gradle
+  - package-ecosystem: "gradle"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "gradle"
+    commit-message:
+      prefix: "deps"
+      include: "scope"
+    # Ignore updates to Minecraft and Fabric versions as they require more testing
+    ignore:
+      - dependency-name: "com.mojang:minecraft"
+      - dependency-name: "net.fabricmc:fabric-loader"
+      - dependency-name: "net.fabricmc:yarn"
+
+  # Maintain dependencies for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "github-actions"
+    commit-message:
+      prefix: "ci"
+      include: "scope"
