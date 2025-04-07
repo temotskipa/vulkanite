@@ -8,8 +8,8 @@ import me.cortex.vulkanite.lib.base.initalizer.VInitializer;
 import me.cortex.vulkanite.lib.descriptors.VDescriptorPool;
 import me.cortex.vulkanite.lib.descriptors.VDescriptorSetLayout;
 import me.cortex.vulkanite.lib.descriptors.VTypedDescriptorPool;
-import me.jellysquid.mods.sodium.client.render.chunk.RenderSection;
-import me.jellysquid.mods.sodium.client.render.chunk.compile.ChunkBuildOutput;
+import net.caffeinemc.mods.sodium.client.render.chunk.RenderSection;
+import net.caffeinemc.mods.sodium.client.render.chunk.compile.ChunkBuildOutput;
 import net.minecraft.util.Util;
 import org.lwjgl.vulkan.*;
 

@@ -1,7 +1,5 @@
 package me.cortex.vulkanite.lib.other;
 
-import net.coderbot.iris.gl.texture.InternalTextureFormat;
-
 import static org.lwjgl.opengl.GL11C.GL_RGB8;
 import static org.lwjgl.opengl.GL11C.GL_RGBA16;
 import static org.lwjgl.opengl.GL11C.GL_RGBA8;
@@ -10,10 +8,10 @@ import static org.lwjgl.opengl.GL30C.GL_R16F;
 import static org.lwjgl.vulkan.VK10.*;
 
 public class FormatConverter {
-    public static int getVkFormatFromGl(InternalTextureFormat format) {
+    public static int getVkFormatFromGl(int glFormat) {
         // TODO: Support 3 component types
 
-        return switch (format.getGlFormat()) {
+        return switch (glFormat) {
             // Weird formats
             case GL_R11F_G11F_B10F -> VK_FORMAT_B10G11R11_UFLOAT_PACK32;
             case GL_RGB10_A2, GL_RGB10 -> VK_FORMAT_A2B10G10R10_UNORM_PACK32;
@@ -55,20 +53,12 @@ public class FormatConverter {
             case GL_R8UI -> VK_FORMAT_R8_UINT;
 
             default -> {
-                throw new IllegalArgumentException("No known conversion to VK type for GL type " + format + " (" + format.getGlFormat() + ").");
+                throw new IllegalArgumentException("No known conversion to VK type for GL type " + glFormat);
             }
         };
     }
 
-    public static InternalTextureFormat findFormatFromGlFormat(int glFormat) {
-        InternalTextureFormat[] availableFormats = InternalTextureFormat.values();
-
-        for (InternalTextureFormat format : availableFormats) {
-            if(format.getGlFormat() == glFormat) {
-                return format;
-            }
-        }
-
-        return null;
+    public static int findFormatFromGlFormat(int glFormat) {
+        return glFormat;
     }
 }
