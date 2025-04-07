@@ -23,14 +23,14 @@ jobs:
         run: chmod +x gradlew
       
       - name: Validate Gradle wrapper
-        uses: gradle/wrapper-validation-action@v1
+        uses: gradle/wrapper-validation-action@v3
       
       - name: Run linting
         run: ./gradlew --no-daemon checkstyleMain || true
         continue-on-error: true
       
       - name: Upload checkstyle reports
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: checkstyle-reports
