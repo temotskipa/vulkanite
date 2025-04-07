@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.2-SNAPSHOT'
+    id 'fabric-loom' version '1.7.3'
     id 'maven-publish'
 }
 
@@ -35,11 +35,11 @@ dependencies {
     modImplementation(fabricApi.module("fabric-api-base", project.fabric_version))
     modImplementation(fabricApi.module("fabric-block-view-api-v2", project.fabric_version))
     modImplementation(fabricApi.module("fabric-rendering-fluids-v1", project.fabric_version))
-    modImplementation("net.fabricmc.fabric-api:fabric-rendering-data-attachment-v1:0.3.38+73761d2e9a")
+    modImplementation(fabricApi.module("fabric-rendering-data-attachment-v1", project.fabric_version))
     modImplementation(fabricApi.module("fabric-resource-loader-v0", project.fabric_version))
 
-    modImplementation "maven.modrinth:sodium:mc1.20.2-0.5.3"
-    modImplementation "maven.modrinth:iris:1.6.9+1.20.2"
+    modImplementation "maven.modrinth:sodium:mc1.21.1-0.6.13-fabric"
+    modImplementation "maven.modrinth:iris:1.8.8+1.21.1-fabric"
 
     modRuntimeOnly 'org.anarres:jcpp:1.4.14'
     modRuntimeOnly 'io.github.douira:glsl-transformer:2.0.0-pre13'
@@ -56,7 +56,7 @@ processResources {
     }
 }
 
-def targetJavaVersion = 17
+def targetJavaVersion = 21
 tasks.withType(JavaCompile).configureEach {
     // ensure that the encoding is set to UTF-8, no matter what the system default is
     // this fixes some edge cases with special characters not displaying correctly
