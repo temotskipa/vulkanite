@@ -44,9 +44,9 @@ dependencies {
     modImplementation "maven.modrinth:iris:1.8.8+1.21.1-fabric"
 
     modRuntimeOnly 'org.anarres:jcpp:1.4.14'
-    modRuntimeOnly 'io.github.douira:glsl-transformer:2.0.0-pre13'
+    modRuntimeOnly 'io.github.douira:glsl-transformer:2.0.2'
 
-    modRuntimeOnly 'net.java.dev.jna:jna:5.9.0'
+    modRuntimeOnly 'net.java.dev.jna:jna:5.17.0'
 }
 
 processResources {
