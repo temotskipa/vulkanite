@@ -20,12 +20,7 @@ import me.cortex.vulkanite.lib.pipeline.VRaytracePipeline;
 import me.cortex.vulkanite.lib.shader.reflection.ShaderReflection;
 import me.cortex.vulkanite.mixin.iris.MixinCelestialUniforms;
 import me.cortex.vulkanite.mixin.iris.MixinCommonUniforms;
-import net.coderbot.iris.gl.buffer.ShaderStorageBuffer;
-import net.coderbot.iris.texture.pbr.PBRTextureHolder;
-import net.coderbot.iris.texture.pbr.PBRTextureManager;
-import net.coderbot.iris.uniforms.CapturedRenderingState;
-import net.coderbot.iris.uniforms.CommonUniforms;
-import net.coderbot.iris.uniforms.SystemTimeUniforms;
+import net.irisshaders.iris.api.v0.IrisApi;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.Camera;
 import net.minecraft.client.texture.AbstractTexture;
@@ -241,12 +236,12 @@ public class VulkanPipeline {
         accelerationManager.setEntityData(supportsEntities?capture.capture(CapturedRenderingState.INSTANCE.getTickDelta(), MinecraftClient.getInstance().world):null);
     }
 
-    public void renderPostShadows(List<VGImage> outImgs, Camera camera, ShaderStorageBuffer[] ssbos, MixinCelestialUniforms celestialUniforms) {
+    public void renderPostShadows(List<VGImage> outImgs, Camera camera, Object[] ssbos, MixinCelestialUniforms celestialUniforms) {
         buildEntities();
 
 
         this.singleUsePool.doReleases();
-        PBRTextureManager.notifyPBRTexturesChanged();
+        // PBR textures changed notification
 
         var in = ctx.sync.createSharedBinarySemaphore();
         var outImgsGlIds = outImgs.stream().mapToInt(i -> i.glId).toArray();

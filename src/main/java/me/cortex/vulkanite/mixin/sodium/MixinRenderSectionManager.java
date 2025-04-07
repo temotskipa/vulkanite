@@ -4,10 +4,9 @@ import it.unimi.dsi.fastutil.longs.Long2ReferenceMap;
 import it.unimi.dsi.fastutil.objects.Reference2ReferenceLinkedOpenHashMap;
 import me.cortex.vulkanite.compat.IAccelerationBuildResult;
 import me.cortex.vulkanite.client.Vulkanite;
-import me.jellysquid.mods.sodium.client.render.chunk.RenderSection;
-import me.jellysquid.mods.sodium.client.render.chunk.RenderSectionManager;
-import me.jellysquid.mods.sodium.client.render.chunk.compile.ChunkBuildOutput;
-import me.jellysquid.mods.sodium.client.util.NativeBuffer;
+import net.caffeinemc.mods.sodium.client.render.chunk.RenderSection;
+import net.caffeinemc.mods.sodium.client.render.chunk.RenderSectionManager;
+import net.caffeinemc.mods.sodium.client.render.chunk.compile.ChunkBuildOutput;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -30,7 +29,7 @@ public abstract class MixinRenderSectionManager {
         Vulkanite.INSTANCE.destroy();
     }
 
-    @Redirect(method = "destroy", at = @At(value = "INVOKE", target = "Lme/jellysquid/mods/sodium/client/render/chunk/compile/ChunkBuildOutput;delete()V"))
+    @Redirect(method = "destroy", at = @At(value = "INVOKE", target = "Lnet/caffeinemc/mods/sodium/client/render/chunk/compile/ChunkBuildOutput;delete()V"))
     private void destroyAccelerationData(ChunkBuildOutput instance) {
         var data = ((IAccelerationBuildResult)instance).getAccelerationGeometryData();
         instance.delete();

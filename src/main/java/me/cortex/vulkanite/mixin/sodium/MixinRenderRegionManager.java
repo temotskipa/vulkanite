@@ -1,12 +1,12 @@
 package me.cortex.vulkanite.mixin.sodium;
 
 import me.cortex.vulkanite.client.Vulkanite;
-import me.jellysquid.mods.sodium.client.gl.arena.GlBufferArena;
-import me.jellysquid.mods.sodium.client.gl.device.CommandList;
-import me.jellysquid.mods.sodium.client.render.chunk.RenderSection;
-import me.jellysquid.mods.sodium.client.render.chunk.compile.ChunkBuildOutput;
-import me.jellysquid.mods.sodium.client.render.chunk.region.RenderRegion;
-import me.jellysquid.mods.sodium.client.render.chunk.region.RenderRegionManager;
+import net.caffeinemc.mods.sodium.client.gl.arena.GlBufferArena;
+import net.caffeinemc.mods.sodium.client.gl.device.CommandList;
+import net.caffeinemc.mods.sodium.client.render.chunk.RenderSection;
+import net.caffeinemc.mods.sodium.client.render.chunk.compile.ChunkBuildOutput;
+import net.caffeinemc.mods.sodium.client.render.chunk.region.RenderRegion;
+import net.caffeinemc.mods.sodium.client.render.chunk.region.RenderRegionManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -25,8 +25,8 @@ import java.util.List;
 // destroy the old pointer
 @Mixin(value = RenderRegionManager.class, remap = false)
 public class MixinRenderRegionManager {
-    @Inject(method = "uploadMeshes(Lme/jellysquid/mods/sodium/client/gl/device/CommandList;Lme/jellysquid/mods/sodium/client/render/chunk/region/RenderRegion;Ljava/util/Collection;)V",
-            at = @At(value = "INVOKE", target = "Lme/jellysquid/mods/sodium/client/gl/arena/GlBufferArena;upload(Lme/jellysquid/mods/sodium/client/gl/device/CommandList;Ljava/util/stream/Stream;)Z",
+    @Inject(method = "uploadMeshes(Lnet/caffeinemc/mods/sodium/client/gl/device/CommandList;Lnet/caffeinemc/mods/sodium/client/render/chunk/region/RenderRegion;Ljava/util/Collection;)V",
+            at = @At(value = "INVOKE", target = "Lnet/caffeinemc/mods/sodium/client/gl/arena/GlBufferArena;upload(Lnet/caffeinemc/mods/sodium/client/gl/device/CommandList;Ljava/util/stream/Stream;)Z",
                     shift = At.Shift.AFTER), locals = LocalCapture.CAPTURE_FAILHARD)
     private void afterUpload(CommandList commandList, RenderRegion region, Collection<ChunkBuildOutput> results, CallbackInfo ci, ArrayList<PendingSectionUploadAccessor> uploads, RenderRegion.DeviceResources resources, GlBufferArena arena) {
         for (var res : results) {
@@ -39,8 +39,8 @@ public class MixinRenderRegionManager {
         }
     }
 
-    @Inject(method = "uploadMeshes(Lme/jellysquid/mods/sodium/client/gl/device/CommandList;Lme/jellysquid/mods/sodium/client/render/chunk/region/RenderRegion;Ljava/util/Collection;)V",
-            at = @At(value = "INVOKE", target = "Lme/jellysquid/mods/sodium/client/render/chunk/region/RenderRegion;refresh(Lme/jellysquid/mods/sodium/client/gl/device/CommandList;)V",
+    @Inject(method = "uploadMeshes(Lnet/caffeinemc/mods/sodium/client/gl/device/CommandList;Lnet/caffeinemc/mods/sodium/client/render/chunk/region/RenderRegion;Ljava/util/Collection;)V",
+            at = @At(value = "INVOKE", target = "Lnet/caffeinemc/mods/sodium/client/render/chunk/region/RenderRegion;refresh(Lnet/caffeinemc/mods/sodium/client/gl/device/CommandList;)V",
                     shift = At.Shift.AFTER))
     private void arenaBufferChanged(CommandList commandList, RenderRegion region, Collection<ChunkBuildOutput> results, CallbackInfo ci) {
         List<RenderSection> sectionsInRegion = new ArrayList<>();

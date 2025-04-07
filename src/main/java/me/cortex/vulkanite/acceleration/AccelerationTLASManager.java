@@ -15,7 +15,7 @@ import me.cortex.vulkanite.lib.memory.VAccelerationStructure;
 import me.cortex.vulkanite.lib.memory.VBuffer;
 import me.cortex.vulkanite.lib.other.sync.VFence;
 import me.cortex.vulkanite.lib.other.sync.VSemaphore;
-import me.jellysquid.mods.sodium.client.render.chunk.RenderSection;
+import net.caffeinemc.mods.sodium.client.render.chunk.RenderSection;
 import net.minecraft.client.render.BufferBuilder;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.util.Pair;
